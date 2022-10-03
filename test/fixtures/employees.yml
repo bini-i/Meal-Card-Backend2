@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  first_name: MyString
+  father_name: MyString
+  last_name: MyString
+  remaining: 1
+  employee_id: MyString
+  department: one
+
+two:
+  first_name: MyString
+  father_name: MyString
+  last_name: MyString
+  remaining: 1
+  employee_id: MyString
+  department: two
