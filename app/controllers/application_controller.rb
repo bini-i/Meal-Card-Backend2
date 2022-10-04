@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
     protect_from_forgery with: :null_session,
       if: Proc.new { |c| c.request.format =~ %r{application/json} }
 
-    before_action :authenticate_user!, only: %i[:finance]
+    before_action :authenticate_user!, only: [:finance]
 
     before_action :authenticate_user_from_token!, only: %i[:check_employee :serve]
 

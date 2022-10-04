@@ -25,7 +25,7 @@ class V1::EmployeesController < ApplicationController
 
   # # GET /v1/employees
   def finance
-    @employees = Employee.all
+    @employees = Employee.all.sort
     render :finance
   end
 
