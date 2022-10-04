@@ -1,8 +1,12 @@
 class ApplicationController < ActionController::Base
     protect_from_forgery with: :null_session,
       if: Proc.new { |c| c.request.format =~ %r{application/json} }
-        
-    before_action :authenticate_user_from_token!
+
+    before_action :authenticate_user!, only: %i[:finance]
+
+    before_action :authenticate_user_from_token!, only: %i[:check_employee :serve]
+
+    before_action :configure_permitted_parameters, if: :devise_controller?
 
     def authenticate_user_from_token!
         auth_token = request.headers['Authorization']
@@ -39,4 +43,12 @@ class ApplicationController < ActionController::Base
         # User's token is either invalid or not in the right format
         render json: {error: "Incorrect login"}, status: 401 # Authentication timeout
     end
+
+    protected
+    
+    def configure_permitted_parameters
+        devise_parameter_sanitizer.permit(:sign_in, keys: [:username])
+    end
+
+
 end

@@ -1,23 +1,34 @@
 class EmployeesController < ApplicationController
-  before_action :set_employee, only: %i[serve show edit update destroy ]
+  before_action :set_employee, only: %i[check_employee serve show edit update destroy ]
 
   # GET /v1/employees/:id
-  def serve
+  def check_employee
     unless @employee
       render json: {error: "ይቅርታ የማያገለግል ኩፖን ነው"}, status: 404
     else
       if @employee.check_balance?(@order_amount)
-        if @employee.serve(@order_amount)
-          render json: {success: "ተስተናግዷል", first_name: @employee.first_name, father_name: @employee.father_name, remaining: @employee.remaining}
-        else
-          render json: {error: "ይቅርታ አልተስተናገዱም"}, status: 500
-        end
+        render json: {success: "valid", first_name: @employee.first_name, father_name: @employee.father_name, remaining: @employee.remaining}, status: 200
+        
       else
         render json: {error: "ይቅርታ በቂ ኩፖን የለዎትም", remaining: @employee.remaining}, status: 401
       end
     end 
   end
-    
+
+  # POST /v1/employees/:id
+  def serve
+    if @employee.serve(@order_amount)
+      render json: {success: "ተስተናግዷል", first_name: @employee.first_name, father_name: @employee.father_name, remaining: @employee.remaining}
+    else
+      render json: {error: "ይቅርታ አልተስተናገዱም"}, status: 500
+    end
+  end
+
+  # GET /v1/employees  
+  def finance
+    @employees = Employee.all
+  end
+
   # GET /employees or /employees.json
   def index
     @employees = Employee.all

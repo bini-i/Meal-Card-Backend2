@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html class="h-full">
   <head>
     <title>MealCardBackend2</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -10,7 +10,8 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
+  <body class="font-sans font-normal leading-normal text-gray-800 bg-white flex flex-col min-h-screen h-full bg-purple-200">
+    <%= render "shared/flash_notice" %>
     <%= yield %>
   </body>
 </html>

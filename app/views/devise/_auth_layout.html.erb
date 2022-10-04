@@ -1,0 +1,17 @@
+<%
+  subtitle ||= ""
+  title ||= "" %>
+<div class="items-start justify-center block h-full grid-cols-1 gap-4 lg:grid lg:items-center">
+  <div class="justify-center">
+    <div class="relative z-20 px-6 mx-auto lg:px-12 max-w-lg">
+      <div class="mb-4 xl:mt-8">
+      <% unless title.blank? %>
+        <h2 class="pt-6 font-sans text-3xl font-black leading-tight"><%= title %></h2>
+      <% end %>
+      <% unless subtitle.blank? %>
+        <p class="text-gray-600 mt-3"><%= subtitle %></p>
+      <% end %>
+    </div>
+    <%= yield %>
+  </div>
+</div>
