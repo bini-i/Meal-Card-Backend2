@@ -12,6 +12,9 @@ class Employee < ApplicationRecord
 
   # deduct from remaining
   def serve(order_amount)
+    if self.remaining <= 0
+      return false
+    end
     self.remaining -= order_amount
     if self.save
       return true

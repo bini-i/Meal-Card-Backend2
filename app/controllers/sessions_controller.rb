@@ -3,6 +3,7 @@ class SessionsController < ApplicationController
 
     # POST /login
     def create
+        # debugger
         @user = User.find_for_database_authentication(username: params[:username])
         return invalid_login_attempt unless @user
 
