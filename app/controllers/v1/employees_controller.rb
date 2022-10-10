@@ -25,7 +25,7 @@ class V1::EmployeesController < ApplicationController
 
   # # GET /v1/employees
   def finance
-    @employees = Employee.all.sort
+    @employees = Kaminari.paginate_array(Employee.all.sort).page(params[:page]).per(20)
     render :finance
   end
 

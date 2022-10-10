@@ -1,4 +1,5 @@
 class Employee < ApplicationRecord
+  validates :remaining, comparison: {greater_than_or_equal_to: 0, less_than_or_equal_to:10}
   belongs_to :department
 
   # check balance for an employee

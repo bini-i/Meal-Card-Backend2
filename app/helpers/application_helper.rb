@@ -1,6 +1,6 @@
 module ApplicationHelper
     def flash_classes(flash_type)
-        flash_base = "px-2 py-4 mx-auto font-sans font-medium text-center text-white"
+        flash_base = "absolute right-0 px-2 py-4 mx-auto font-sans font-medium text-center text-white"
         {
           notice: "bg-indigo-600 #{flash_base}",
           error:  "bg-red-600 #{flash_base}",
