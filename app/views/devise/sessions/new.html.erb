@@ -1,0 +1,15 @@
+<%= render layout: "auth_layout", locals: { title: "Sign in" }  do %>
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name), data: { turbo: false }) do |f| %>
+    <div class="mb-6">
+      <%= f.label :username, class: label_class %>
+      <%= f.text_field :username, autofocus: true, class: input_class %>
+    </div>
+    <div class="mb-6">
+      <%= f.label :password, class: label_class %>
+      <%= f.password_field :password, autocomplete: "current-password", class: input_class %>
+    </div>
+    <div class="mb-6">
+      <%= f.submit "Sign in", class: button_class(theme: "primary", variant: "expanded") %>
+    </div>
+  <% end %>
+<% end %>
